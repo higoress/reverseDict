@@ -1,0 +1,163 @@
+As entradas do dicionário estão dividas em:
+
+PALAVRA        DEFINICAO
+PALAVRA:
+ - TERMO       DEFINICAO
+
+ A PALAVRA E SUA DEFINICAO SE ENCONTRAM SEMPRE NA MESMA LINHA,
+ SE HOUVER OS DOIS PONTOS, SIGNIFICA QUE TEREMOS A APLICACAO DESTA PALAVRA EM UMA FRASE.
+ 
+ ENQUANTO FAZEMOS A DEFINICAO DO TERMO, A PALAVRA DEVE ESTAR CONTIDA NO INICIO DA LINHA, OU SEJA,
+ QUANDO FORMOS LER A DEFINICAO OU O SIGNIFICADO DE UM TERMO, SÓ PARAMOS A LEITURA CASO EXISTA /^[word]
+
+ NOS TERMOS CORRELACIONADOS A PALAVRA, SEMPRE COMEÇAM COM UM ESPACO, OU SEJA, TAMBÉM NÃO ESTÃO CONTIDOS
+ NO INICIO DA LINHA, O QUE FACILITA O SEU RECONHECIMENTO E DA SUA DEFINICAO.
+ ENTAO, DEFINICAO, SEJA DE TERMOS OU PALAVRAS, TERMINA SOMENTE QUANDO ENCONTRAR UMA PALAVRA NO INICIO DA OUTRA LINHA
+ OU ENCONTRAR UM NOVO TERMO.
+ 
+ OS TERMOS COMPREENDEM ALGUNS ESPACOS NA MARGEM.
+
+ PALAVRAS NAO CONTEM NENHUM ESCAPE DAS MARGENS.
+
+ O DICIONARIO ESTA DIVIDIDO EM ORDEM ALFABETICA, PODEMOS CRIAR UMA ARVORE DE PESQUISA PARA OS TERMOS,
+ NO ENTANTO NÃO SEI SE SERIA UTIL, MAS SERIA UMA BOA FORMA DE ORGANIZAR.
+NA REALIDADE NÃO, PORQUE SE É UM DICIONARIO A MANEIRA MAIS OBVIA DE ARMAZENAR E EM UM DICIONARIO MESMO
+
+ENTAO O OBJETIVO DO PROJETO É: TRANSFORMAR O ARQUIVO DO DICIONARIO EM UM NOVO FORMATO, POR ISSO, NÃO SERA
+NECESSARIO UMA ESTRUTURA DE DADOS PARA FAZER BUSCA DOS TERMOS EM MEMORIA.
+
+TROCAR O SIMBOLO - POR +base NO ARQUIVO QUE SERÁ PRODUZIDO.
+
+COLOCAR A LINGUA EM QUE O TERMO ESTEJA ESCRITO, COMO EN PARA INGLES E PT PARA PORTUGUES.
+
+DEFINICAO SEPARADAS POR VÍRGULA OU PONTO E VÍRGULA, DEVERÃO SER IMPRESSAS SEPARADAMENTE.
+
+
+__GRAMATICA__
+
+BEGIN: DICIONARIO
+
+DICIONARIO: SESSAO
+            DICIONARIO SESSAO
+
+SESSAO: IDENTIFICADOR LISTA_PALAVRAS
+
+IDENTIFICADOR: letra
+
+LISTA_PALAVRAS: PALAVRA
+                LISTA_PALAVRAS PALAVRA
+
+PALAVRA: PALAVRA_SIMPLES
+         PALAVRA_COMPOSTA
+        
+PALAVRA_SIMPLES: NOME DEFINICAO
+
+PALAVRA_COMPOSTA: NOME ':' DEFINICAO TERMOS
+                  NOME ':' TERMOS 
+
+NOME: texto
+
+DEFINICAO: texto
+           DEFINICAO ',' texto
+           "vazio"
+
+TERMOS: TERMO
+        TERMOS TERMO
+
+TERMO: '-' texto DEFINICAO
+       texto '-' DEFINICAO
+       texto '-' texto DEFINICAO
+
+
+__OBSERVACOES__PARA__RELATORIO__
+
+
+
+
+
+__TEMP__
+
+A
+ADP (automatic data processing)   processamento (m) automático de
+                                   dados
+absenteeism                       absenteísmo (m)
+absorption costing                custeio (f) de absorção
+abandonment:
+ product -                        retirada (f) de um produto
+above par                         com ágio; acima da paridade
+acceleration clause               cláusula (f) de aceleração
+acceptance:                       aceitação (f)
+ brand -                          aceitação (f) de uma marca
+ consumer -                       aceitação (f) por parte do consumidor
+access:
+ multi -                          acesso (m) múltiplo
+ random -                         acesso (m) casual
+account:
+ bank -                           conta (f) bancária
+ joint -                          conta (f) conjunta
+B
+backdate to              antecipar, pré-datar
+bad debt                 dívida (f) duvidosa, dívida (f)
+                          incobrável, empréstimo (m) em
+                          liquidação
+balance:
+ - sheet                 balanço (m) geral
+ debit -                 saldo (m) devedor
+ gross -                 resultado (m) bruto
+ outstanding -           saldo (m) a receber, saldo (m) a pagar
+balance sheet auditing   auditoria (f) de balanço
+bank:
+ - account               conta (f) bancária
+ - deposit               depósito (m) bancário
+ - draft                 saque (m)
+ - overdraft             conta (f) bancária a descoberto
+ - statement             extrato (m) bancário
+ computer -              banco (m) de dados de computador
+ data -                  banco (m) de dados
+ safety -                reserva (/) para imprevistos
+bankers'draft            saque (m) bancário
+bargain                  permuta (f), barganha (f), pechincha (f)
+D
+dispute:
+ labour -                conflito (m) trabalhista
+distribution:
+ - costs                 custos de distribuição
+ - manager               gerente (m) de distribuição 
+ - network               rede (f) de distribuição
+ - planning              planejamento (m) de distribuição
+ chain of -              cadeia (f) de distribuição
+ channels of -           canais (mpl) de distribuição
+ frequency -             distribuição (f) por freqüência
+ normal -                distribuição (f) normal
+ physical - management   controle (m) da distribuição física
+ diversification:         diversificação (f)
+ - strategy              estratégia (f) de diversificação
+ product -               diversificação (f) de produtos
+
+SESSAO: IDENTIFICADOR LISTA_PALAVRAS
+      ;
+IDENTIFICADOR: texto
+             ;
+LISTA_PALAVRAS: PALAVRA
+              | LISTA_PALAVRAS PALAVRA
+              ;
+PALAVRA: PALAVRA_SIMPLES
+       | PALAVRA_COMPOSTA
+       ;
+PALAVRA_SIMPLES: NOME DEFINICAO
+               ;
+PALAVRA_COMPOSTA: NOME ':' DEFINICAO TERMOS
+                ;
+NOME: texto
+    ;
+DEFINICAO: texto
+         | DEFINICAO ',' texto
+         |
+         ;
+TERMOS: TERMO
+      | TERMOS TERMO
+      ;
+TERMO: '-' texto DEFINICAO
+     | texto '-' DEFINICAO
+     | texto '-' texto DEFINICAO
+     ;
