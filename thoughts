@@ -80,6 +80,10 @@ resolver o seguinte problema:
 Como ler strings que tenha somente um caracter de espaço no meio, para que consigamos diferenciar tais strings
 de definição do termo, das strings de tradução.
 
+Consegui resolver o problema dos espaços em branco no meio das palavras.
+Agora podemos brincar com mais complexidade do lado da gramática.
+
+
 
 
 __TEMP__

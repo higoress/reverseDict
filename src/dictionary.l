@@ -11,7 +11,7 @@ texto      {letra}|{simbolos}
 %x DICT
 
 %%
-{texto}+              {yylval.texto=strdup(yytext);return(palavra);}
+{texto}+(" "{texto}+)*         {yylval.texto=strdup(yytext);return(palavra);}
 [ \t]   ;
 .|\n           {return yytext[0];}
 %%
