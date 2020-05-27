@@ -71,7 +71,14 @@ TERMO: '-' texto DEFINICAO
 
 __OBSERVACOES__PARA__RELATORIO__
 
+Eu tentei fazer funcionar com a estrutura descrita acima, mas não funcionou e era muito complexa para
+debuggar, então deixei ela um pouco mais simples. E vou adicionando uma funcionalidade de cada vez.
+Para referir a essas mudanças, estou criando pequenas partes do dicionário e testando determinada funcionalidade.
 
+Consegui criar uma pequena versão que já funciona para o caso mais simples de todos, no entanto, precisamos 
+resolver o seguinte problema:
+Como ler strings que tenha somente um caracter de espaço no meio, para que consigamos diferenciar tais strings
+de definição do termo, das strings de tradução.
 
 
 
