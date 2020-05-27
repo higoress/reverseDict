@@ -83,6 +83,12 @@ de definição do termo, das strings de tradução.
 Consegui resolver o problema dos espaços em branco no meio das palavras.
 Agora podemos brincar com mais complexidade do lado da gramática.
 
+Ajustei o FLEX para só começar a reconhecer o conteúdo do dicionário após encontrar o __BEGIN__.
+Podemos usar desta ferramenta para outras coisas.
+WORD para reconhecer termos do dicionário
+DICT para limpar formatações desnecessárias.
+
+
 
 
 

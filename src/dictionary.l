@@ -8,10 +8,13 @@ letra      [a-zA-Z]|{acentos}
 simbolos   [\-()]
 texto      {letra}|{simbolos}
 
-%x DICT
+%x DICT WORD
 
 %%
-{texto}+(" "{texto}+)*         {yylval.texto=strdup(yytext);return(palavra);}
-[ \t]   ;
-.|\n           {return yytext[0];}
+.|\n    ;
+__BEGIN__   {BEGIN(DICT);}
+<DICT>[ \n]*/{texto}    {BEGIN(WORD);}
+<WORD>{texto}+(" "{texto}+)*         {yylval.texto=strdup(yytext);return(palavra);}
+<WORD>[ \t]   ;
+<WORD>.|\n           {return yytext[0];}
 %%
