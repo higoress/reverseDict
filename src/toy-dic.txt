@@ -114,4 +114,4 @@ INGLÊS                                                  PORTUGUÊS
 __BEGIN__
 
 dissolution              dissolução (f)
-distributor              distribuidor (m)
+distributor              distribuidor (m), atacadista (m)

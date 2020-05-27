@@ -15,9 +15,16 @@
 LISTA_PALAVRAS: PALAVRA '\n'
               | LISTA_PALAVRAS PALAVRA
               ;
-PALAVRA: palavra TRADUCAO {printf("EN %s\nPT %s\n", $1, $2);}
+PALAVRA: TERMO TRADUCAO     {printf("\n");}
                ;
-TRADUCAO: palavra {$$ = strdup($1);};
+TRADUCAO: ITEM 
+        | TRADUCAO ',' ITEM
+        | TRADUCAO ';' ITEM
+        ;
+TERMO: palavra      {printf("EN %s\n", $1);}
+    ;
+ITEM: palavra    {printf("PT %s\n", $1);}
+    ;
 %%
 
 #include "lex.yy.c"

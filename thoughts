@@ -88,7 +88,8 @@ Podemos usar desta ferramenta para outras coisas.
 WORD para reconhecer termos do dicionário
 DICT para limpar formatações desnecessárias.
 
-
+Arrumei outro caso de uso, onde um termo pode ter mais de uma tradução possível.
+E melhorei um pouco a organização da gramática. Adicionando espaços e imprimindo nos lugares adequados.
 
 
 
