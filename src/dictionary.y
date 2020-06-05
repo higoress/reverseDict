@@ -1,29 +1,40 @@
 %{
 #include <stdio.h>
 #include <string.h>
+
+char mem[100];
 %}
 
 %union{ char * texto;}
 
 %token <texto> palavra;
+%token <texto> subitem;
 %token <texto> traducao;
-%type  <texto> TRADUCAO;
+
+%type  <texto> TERMO;
+
 
 
 %%
 
-LISTA_PALAVRAS: PALAVRA '\n'
+LISTA_PALAVRAS: PALAVRA
               | LISTA_PALAVRAS PALAVRA
               ;
-PALAVRA: TERMO TRADUCAO     {printf("\n");}
+PALAVRA: TERMO TRADUCAO   {printf("EN %s\n", $1);}  
+    |    TERMO ':' TRADUCAO SUBITEM {printf("EN %s\n", $1);}  
+    |    TERMO ':' SUBITEM
                ;
 TRADUCAO: ITEM 
         | TRADUCAO ',' ITEM
         | TRADUCAO ';' ITEM
         ;
-TERMO: palavra      {printf("EN %s\n", $1);}
+SUBITEM: TESTE '-' TRADUCAO
     ;
-ITEM: palavra    {printf("PT %s\n", $1);}
+TERMO: palavra      {strcpy(mem,$1); $$= strdup($1);}
+    ;
+ITEM: traducao    {printf("PT %s\n", $1);}
+    ;
+TESTE: subitem    {printf("EN %s %s\n", $1, mem);}
     ;
 %%
 

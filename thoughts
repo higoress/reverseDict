@@ -136,8 +136,7 @@ bank:
 bankers'draft            saque (m) bancário
 bargain                  permuta (f), barganha (f), pechincha (f)
 D
-dispute:
- labour -                conflito (m) trabalhista
+
 distribution:
  - costs                 custos de distribuição
  - manager               gerente (m) de distribuição 
@@ -179,3 +178,84 @@ TERMO: '-' texto DEFINICAO
      | texto '-' DEFINICAO
      | texto '-' texto DEFINICAO
      ;
+
+
+<DICT>[ \n]*/({texto}|" "{texto})           {BEGIN(WORD);}              /* consome espaços e quebras de linha desnecessários até que encontre  o primeiro caracter contido em texto.*/
+<WORD>^{texto}+(" "{texto}+)*/[^\n]         {yylval.texto=strdup(yytext);return(verbete);} /* reconhece tokens de palavras, permitindo apenas um espaço entre as strings*/
+<WORD>^[ ]{letra}+(" "{letra}+)*/[^\n]      {yylval.texto=strdup(yytext);return(termo);} /* reconhece tokens de palavras, permitindo apenas um espaço entre as strings*/
+<WORD>{texto}+(" "{texto}+)*                {yylval.texto=strdup(yytext);return(traducao);}
+<WORD>[ \t]                         ;                           /* consome espaços e tabulações desncessárias*/
+<WORD>.|\n                          {return yytext[0];}         /* retorna todos os tokens de símbolo único, pode gerar erros de sintaxe, mas esse comportamento é desejado.*/
+
+TERMOS: TERMO
+    | TERMOS TERMO
+    ;
+
+TERMO: '-' palavra TRADUCAO   {printf("teste...\n");}
+    | palavra '-' TRADUCAO    {printf("teste...\n");}
+    ;
+VERBETE: ENTRADA TRADUCAO               {printf("\n");}
+    | ENTRADA ':' TRADUCAO TERMOS       {printf("\n");}
+    | ENTRADA ':' '\n' TERMOS           {printf("\n");}
+    ;
+
+
+
+
+
+%{
+#include <stdio.h>
+#include <string.h>
+%}
+
+%union{ char * texto;}
+
+%token <texto> palavra;
+%token <texto> traducao;
+%type  <texto> TRADUCAO;
+
+
+%%
+
+
+%%
+
+#include "lex.yy.c"
+
+int yyerror(char *s) { 
+    printf("ERRO: %s\n",s); 
+    return(0); 
+}
+
+int main(){
+    yyparse();
+    return 0;
+}
+
+
+
+LISTA_VERBETES: VERBETE
+    | LISTA_VERBETES VERBETE
+    ;
+VERBETE: ENTRADA TERMOS
+    ;
+ENTRADA: palavra TRADUCAO {printf("EN %s\n", $1);}
+    | palavra ':' {strcpy(mem,$1);}
+    | palavra ':' TRADUCAO {printf("EN %s\n", $1);};
+    ;
+TRADUCAO: palavra           {printf("PT %s\n", $1);}
+    | TRADUCAO ',' palavra  {printf("PT %s\n", $3);}
+    | TRADUCAO ';' palavra  {printf("PT %s\n", $3);}      
+    ;
+TERMOS: TERMO
+    | TERMOS TERMO
+    ;
+TERMO: termo '-' TRADUCAO  {printf("EN %s %s", $1, mem);
+                              printf("+base %s", mem);}
+    |
+    ;
+
+
+A FAZER:::
+
+PRECISAMOS ORDENAR AS ORDENS E ORGANIZAR A IMPRESSÃO. PRECISAMOS TAMBÉM FAZER ELE PASSAR ERROS SINTÁTICOS.

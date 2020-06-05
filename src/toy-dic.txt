@@ -115,3 +115,6 @@ __BEGIN__
 
 dissolution              dissolução (f)
 distributor              distribuidor (m), atacadista (m)
+dispute:
+ labour -                conflito (m) trabalhista
+ 
