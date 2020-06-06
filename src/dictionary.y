@@ -33,6 +33,7 @@ TRADUCAO: traducao                  {sprintf(aux,"PT %s\n",$1);$$=strdup(aux);}
         ;
 SUBITEM: subitem '-' TRADUCAO       {sprintf(aux,"EN %s %s\n+base %s:\n%s",$1,mem,mem,$3);$$=strdup(aux);}
     | '-' subitem TRADUCAO          {sprintf(aux,"EN %s %s\n+base %s:\n%s",mem,$2,mem,$3);$$=strdup(aux);}
+    | subitem '-' subitem TRADUCAO  {sprintf(aux,"EN %s %s %s\n+base %s:\n%s",$1,mem,$3,mem,$4);$$=strdup(aux);}
     ;
 TERMO: palavra      {strcpy(mem,$1); sprintf(aux,"EN %s\n",$1);$$=strdup(aux);}
     ;
