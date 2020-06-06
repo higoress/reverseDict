@@ -115,7 +115,18 @@ __BEGIN__
 
 dissolution              dissolução (f)
 distributor              distribuidor (m), atacadista (m)
-dispute:                 disputa (f), conflito (m)
+dispute:                 
  labour -                conflito (m) trabalhista
-balance:
- - sheet                 balanço (m) geral
+distribution:
+ - costs                 custos de distribuição
+ - manager               gerente (m) de distribuição
+ - network               rede (f) de distribuição
+ - planning              planejamento (m) de distribuição
+ chain of -              cadeia (f) de distribuição
+ channels of -           canais (mpl) de distribuição
+ frequency -             distribuição (f) por freqüência
+ normal -                distribuição (f) normal
+ physical - management   controle (m) da distribuição física
+diversification:         diversificação (f)
+ - strategy              estratégia (f) de diversificação
+ product -               diversificação (f) de produtos

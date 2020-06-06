@@ -33,7 +33,7 @@ TRADUCAO: traducao                  {sprintf(buffer,"PT %s\n",$1);$$=strdup(buff
         | TRADUCAO ';' traducao     {sprintf(buffer,"%sPT %s\n",$1,$3);$$=strdup(buffer);}
         ;
 L_SUBITEM: SUBITEM                  {$$ = strdup($1);}
-        |  L_SUBITEM SUBITEM        {sprintf(buffer,"%s%s",$1,$2);$$=strdup(buffer);}
+        |  L_SUBITEM SUBITEM        {sprintf(buffer,"%s\n%s",$1,$2);$$=strdup(buffer);}
         ;
 SUBITEM: subitem '-' TRADUCAO       {sprintf(buffer,"EN %s %s\n+base %s:\n%s",$1,mem,mem,$3);$$=strdup(buffer);}
     | '-' subitem TRADUCAO          {sprintf(buffer,"EN %s %s\n+base %s:\n%s",mem,$2,mem,$3);$$=strdup(buffer);}
