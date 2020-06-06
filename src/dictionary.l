@@ -14,7 +14,7 @@ texto      {letra}|{simbolos}
 .|\n                                    ;                           /* consome tudo sem retornar até encontrar o __BEGIN__*/
 __BEGIN__                               {BEGIN(DICT);}              /* inicializa o modo reconhecedor do dicionário*/
 <DICT>^{letra}{texto}+(" "{texto}+)*    {yylval.texto=strdup(yytext);return(palavra);} /* reconhece tokens de palavras, permitindo apenas um espaço entre as strings*/
-<DICT>^" "/({letra}|'-')                {BEGIN(WORD);}
+<DICT>^" "/({letra}|-)                {BEGIN(WORD);}
 <DICT>{letra}{texto}+(" "{texto}+)*     {yylval.texto=strdup(yytext);return(traducao);}
 <DICT>[ \t\n]                         ;                           /* consome espaços e tabulações desncessárias*/
 <DICT>.                          {return yytext[0];}         /* retorna todos os tokens de símbolo único, pode gerar erros de sintaxe, mas esse comportamento é desejado.*/

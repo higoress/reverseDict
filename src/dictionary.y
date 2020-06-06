@@ -3,6 +3,7 @@
 #include <string.h>
 
 char mem[100];
+char aux[300];
 %}
 
 %union{ char * texto;}
@@ -12,29 +13,28 @@ char mem[100];
 %token <texto> traducao;
 
 %type  <texto> TERMO;
+%type  <texto> TRADUCAO;
+%type  <texto> SUBITEM;
 
 
 
 %%
 
-LISTA_PALAVRAS: PALAVRA
-              | LISTA_PALAVRAS PALAVRA
+LISTA_PALAVRAS: PALAVRA                  {printf("\n");}
+              | LISTA_PALAVRAS PALAVRA   {printf("\n");}
               ;
-PALAVRA: TERMO TRADUCAO   {printf("EN %s\n", $1);}  
-    |    TERMO ':' TRADUCAO SUBITEM {printf("EN %s\n", $1);}  
-    |    TERMO ':' SUBITEM
+PALAVRA: TERMO TRADUCAO   {printf("%s%s", $1, $2);}  
+    |    TERMO ':' TRADUCAO SUBITEM {printf("%s%s\n%s",$1,$3,$4);}  
+    |    TERMO ':' SUBITEM      {printf("%s", $3);}
                ;
-TRADUCAO: ITEM 
-        | TRADUCAO ',' ITEM
-        | TRADUCAO ';' ITEM
+TRADUCAO: traducao                  {sprintf(aux,"PT %s\n",$1);$$=strdup(aux);}
+        | TRADUCAO ',' traducao     {sprintf(aux,"%sPT %s\n",$1,$3);$$=strdup(aux);}
+        | TRADUCAO ';' traducao     {sprintf(aux,"%sPT %s\n",$1,$3);$$=strdup(aux);}
         ;
-SUBITEM: TESTE '-' TRADUCAO
+SUBITEM: subitem '-' TRADUCAO       {sprintf(aux,"EN %s %s\n+base %s:\n%s",$1,mem,mem,$3);$$=strdup(aux);}
+    | '-' subitem TRADUCAO          {sprintf(aux,"EN %s %s\n+base %s:\n%s",mem,$2,mem,$3);$$=strdup(aux);}
     ;
-TERMO: palavra      {strcpy(mem,$1); $$= strdup($1);}
-    ;
-ITEM: traducao    {printf("PT %s\n", $1);}
-    ;
-TESTE: subitem    {printf("EN %s %s\n", $1, mem);}
+TERMO: palavra      {strcpy(mem,$1); sprintf(aux,"EN %s\n",$1);$$=strdup(aux);}
     ;
 %%
 
