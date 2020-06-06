@@ -113,6 +113,29 @@ INGLÊS                                                  PORTUGUÊS
 
 __BEGIN__
 
+A
+ADP (automatic data processing)   processamento (m) automático de
+                                   dados
+absenteeism                       absenteísmo (m)
+absorption costing                custeio (f) de absorção
+abandonment:
+ product -                        retirada (f) de um produto
+above par                         com ágio; acima da paridade
+acceleration clause               cláusula (f) de aceleração
+acceptance:                       aceitação (f)
+ brand -                          aceitação (f) de uma marca
+ consumer -                       aceitação (f) por parte do consumidor
+access:
+ multi -                          acesso (m) múltiplo
+ random -                         acesso (m) casual
+account:
+ bank -                           conta (f) bancária
+ joint -                          conta (f) conjunta
+accountability                    responsabilidade (f) sujeita a
+                                   prestação de contas
+accountant:
+
+chief                             chefe (m) de contabilidade
 B
 backdate to              antecipar, pré-datar
 bad debt                 dívida (f) duvidosa, dívida (f) incobrável, empréstimo (m) em liquidação
@@ -139,7 +162,7 @@ distributor              distribuidor (m), atacadista (m)
 dispute:                 
  labour -                conflito (m) trabalhista
 distribution:
- - costs                 custos de distribuição
+  - costs                 custos de distribuição
  - manager               gerente (m) de distribuição
  - network               rede (f) de distribuição
  - planning              planejamento (m) de distribuição
