@@ -113,6 +113,27 @@ INGLÊS                                                  PORTUGUÊS
 
 __BEGIN__
 
+B
+backdate to              antecipar, pré-datar
+bad debt                 dívida (f) duvidosa, dívida (f) incobrável, empréstimo (m) em liquidação
+balance:
+ - sheet                 balanço (m) geral
+ debit -                 saldo (m) devedor
+ gross -                 resultado (m) bruto
+ outstanding -           saldo (m) a receber, saldo (m) a pagar
+balance sheet auditing   auditoria (f) de balanço
+bank:
+ - account               conta (f) bancária
+ - deposit               depósito (m) bancário
+ - draft                 saque (m)
+ - overdraft             conta (f) bancária a descoberto
+ - statement             extrato (m) bancário
+ computer -              banco (m) de dados de computador
+ data -                  banco (m) de dados
+ safety -                reserva (/) para imprevistos
+bankers'draft            saque (m) bancário
+bargain                  permuta (f), barganha (f), pechincha (f)
+D
 dissolution              dissolução (f)
 distributor              distribuidor (m), atacadista (m)
 dispute:                 

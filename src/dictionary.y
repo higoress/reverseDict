@@ -11,7 +11,7 @@ char buffer[1000];
 %token <texto> palavra;
 %token <texto> subitem;
 %token <texto> traducao;
-%token <texto> ID;
+%token <texto> id;
 
 %type  <texto> TERMO;
 %type  <texto> TRADUCAO;
@@ -21,6 +21,14 @@ char buffer[1000];
 
 %%
 
+
+DICIONARIO: SESSAO
+          | DICIONARIO SESSAO
+          ;
+
+SESSAO: ID LISTA_PALAVRAS   {printf("------------------\n");}
+    ;
+ID: id {printf("Seção: %s\n\n", $1);}
 LISTA_PALAVRAS: PALAVRA                  {printf("\n");}
               | LISTA_PALAVRAS PALAVRA   {printf("\n");}
               ;
