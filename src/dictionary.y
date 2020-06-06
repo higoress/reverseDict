@@ -3,7 +3,7 @@
 #include <string.h>
 
 char mem[100];
-char aux[300];
+char buffer[1000];
 %}
 
 %union{ char * texto;}
@@ -11,11 +11,12 @@ char aux[300];
 %token <texto> palavra;
 %token <texto> subitem;
 %token <texto> traducao;
+%token <texto> ID;
 
 %type  <texto> TERMO;
 %type  <texto> TRADUCAO;
 %type  <texto> SUBITEM;
-
+%type  <texto> L_SUBITEM;
 
 
 %%
@@ -24,18 +25,21 @@ LISTA_PALAVRAS: PALAVRA                  {printf("\n");}
               | LISTA_PALAVRAS PALAVRA   {printf("\n");}
               ;
 PALAVRA: TERMO TRADUCAO   {printf("%s%s", $1, $2);}  
-    |    TERMO ':' TRADUCAO SUBITEM {printf("%s%s\n%s",$1,$3,$4);}  
-    |    TERMO ':' SUBITEM      {printf("%s", $3);}
+    |    TERMO ':' TRADUCAO L_SUBITEM {printf("%s%s\n%s",$1,$3, $4);}  
+    |    TERMO ':' L_SUBITEM      {printf("%s",$3);}
                ;
-TRADUCAO: traducao                  {sprintf(aux,"PT %s\n",$1);$$=strdup(aux);}
-        | TRADUCAO ',' traducao     {sprintf(aux,"%sPT %s\n",$1,$3);$$=strdup(aux);}
-        | TRADUCAO ';' traducao     {sprintf(aux,"%sPT %s\n",$1,$3);$$=strdup(aux);}
+TRADUCAO: traducao                  {sprintf(buffer,"PT %s\n",$1);$$=strdup(buffer);}
+        | TRADUCAO ',' traducao     {sprintf(buffer,"%sPT %s\n",$1,$3);$$=strdup(buffer);}
+        | TRADUCAO ';' traducao     {sprintf(buffer,"%sPT %s\n",$1,$3);$$=strdup(buffer);}
         ;
-SUBITEM: subitem '-' TRADUCAO       {sprintf(aux,"EN %s %s\n+base %s:\n%s",$1,mem,mem,$3);$$=strdup(aux);}
-    | '-' subitem TRADUCAO          {sprintf(aux,"EN %s %s\n+base %s:\n%s",mem,$2,mem,$3);$$=strdup(aux);}
-    | subitem '-' subitem TRADUCAO  {sprintf(aux,"EN %s %s %s\n+base %s:\n%s",$1,mem,$3,mem,$4);$$=strdup(aux);}
+L_SUBITEM: SUBITEM                  {$$ = strdup($1);}
+        |  L_SUBITEM SUBITEM        {sprintf(buffer,"%s%s",$1,$2);$$=strdup(buffer);}
+        ;
+SUBITEM: subitem '-' TRADUCAO       {sprintf(buffer,"EN %s %s\n+base %s:\n%s",$1,mem,mem,$3);$$=strdup(buffer);}
+    | '-' subitem TRADUCAO          {sprintf(buffer,"EN %s %s\n+base %s:\n%s",mem,$2,mem,$3);$$=strdup(buffer);}
+    | subitem '-' subitem TRADUCAO  {sprintf(buffer,"EN %s %s %s\n+base %s:\n%s",$1,mem,$3,mem,$4);$$=strdup(buffer);}
     ;
-TERMO: palavra      {strcpy(mem,$1); sprintf(aux,"EN %s\n",$1);$$=strdup(aux);}
+TERMO: palavra      {strcpy(mem,$1); sprintf(buffer,"EN %s\n",$1);$$=strdup(buffer);}
     ;
 %%
 
