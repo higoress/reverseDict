@@ -31,11 +31,11 @@ FILE *fp;
 %%
 
 
-DICIONARIO: SESSAO
-          | DICIONARIO SESSAO
+DICIONARIO: SECCAO
+          | DICIONARIO SECCAO
           ;
 
-SESSAO: ID  LISTA_PALAVRAS              {fprintf(fp,"------------------\n");}
+SECCAO: ID  LISTA_PALAVRAS              {fprintf(fp,"------------------\n");}
     ;
 ID: id                                  {fprintf(fp,"Seção: %s\n\n", $1);}
 LISTA_PALAVRAS: PALAVRA                 {fprintf(fp,"\n");}
