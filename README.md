@@ -1,7 +1,7 @@
 # Processamento de Dicionário
 Trabalho prático 2 de Processamento de Linguagens
 ## Descrição
-Para executar essa primeira versão, basta fazer:
+Reverse e
 ```sh
 cd src/
 make
